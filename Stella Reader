@@ -1,0 +1,20 @@
+import csv
+
+def leer_estrellas(ruta_archivo):
+    estrellas = []
+    with open(ruta_archivo, newline='', encoding='utf-8') as csvfile:
+        lector = csv.DictReader(csvfile)
+        for fila in lector:
+            estrellas.append(fila)
+    return estrellas
+
+from utils import leer_estrellas
+
+def mostrar_estrellas(estrellas, cantidad=5):
+    print(f"Mostrando {cantidad} estrellas:")
+    for estrella in estrellas[:cantidad]:
+        print(f"{estrella['Nombre']} - Magnitud: {estrella['Magnitud']} - Tipo: {estrella['Tipo']}")
+
+if __name__ == "__main__":
+    estrellas = leer_estrellas("datos/estrellas.csv")
+    mostrar_estrellas(estrellas)
